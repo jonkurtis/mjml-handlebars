@@ -1,2 +1,2 @@
 # mjml-handlebars
-A Node script to parse handlebars templating in an MJML template.
+An email templating boilerplate for using MJML with Handlebars JS with a hot reloading static file server.

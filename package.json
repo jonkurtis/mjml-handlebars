@@ -1,16 +1,29 @@
 {
-  "name": "mjml-templating",
+  "name": "mjml-handlebars",
+  "private": true,
   "version": "1.0.0",
-  "description": "",
+  "description": "A boilerplate for using the handlebars templating engine with MJML markup language and a hot reloading browserSync development server.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node parser.js",
+    "serve": "browser-sync start --server --index \"build/index.html\" --files \"build/index.html\"",
+    "watch": "onchange \"src/*.mjml\" -- run-s build",
+    "dev": "run-p serve watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonkurtis/mjml-handlebars.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Jonathan Killian <jonathankurtis@gmail.com>",
+  "license": "MIT",
   "dependencies": {
-    "handlebars": "^4.1.1",
-    "mjml": "^4.4.0-beta.1"
+    "mjml": "^4.5.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.26.7",
+    "handlebars": "^4.5.3",
+    "npm-run-all": "^4.1.5",
+    "onchange": "^6.1.0"
   }
 }
