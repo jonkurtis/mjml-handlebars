@@ -8,7 +8,10 @@
     "build": "node parser.js",
     "serve": "browser-sync start --server --index \"build/index.html\" --files \"build/index.html\"",
     "watch": "onchange \"src/*.mjml\" -- run-s build",
-    "dev": "run-p serve watch"
+    "dev": "run-p serve watch",
+    "buildit": "node parse.js",
+    "watchit": "onchange \"src/*.mjml\" -- run-s buildit",
+    "devit": "run-p serve watchit"
   },
   "repository": {
     "type": "git",
