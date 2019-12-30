@@ -1,5 +1,5 @@
 <mj-section>
   <mj-column>
-    <mj-text>This is a footer!</mj-text>
+    <mj-text>This is a footer message: {{message}}!</mj-text>
   </mj-column>
 </mj-section>

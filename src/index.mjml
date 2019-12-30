@@ -11,7 +11,7 @@
         <mj-include path="./src/footer.mjml" />
 
         <mj-text>
-          This is not a test.
+          This is not a long test.
         </mj-text>
 
       </mj-column>
