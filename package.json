@@ -2,16 +2,13 @@
   "name": "mjml-handlebars",
   "private": true,
   "version": "1.0.0",
-  "description": "A boilerplate for using the handlebars templating engine with MJML markup language and a hot reloading browserSync development server.",
+  "description": "A boilerplate for to combine templating with MJML and a live reloading browserSync development server.",
   "main": "index.js",
   "scripts": {
-    "build": "node parser.js",
+    "build": "node parse.js",
     "serve": "browser-sync start --server --index \"build/index.html\" --files \"build/index.html\"",
     "watch": "onchange \"src/*.mjml\" -- run-s build",
-    "dev": "run-p serve watch",
-    "buildit": "node parse.js",
-    "watchit": "onchange \"src/*.mjml\" -- run-s buildit",
-    "devit": "run-p serve watchit"
+    "dev": "run-p serve watch"
   },
   "repository": {
     "type": "git",

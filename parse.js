@@ -6,50 +6,7 @@ const fileIn = 'index'; // Put the name of your MJML template here (without the 
 const path = require('path')
 const mjml = path.join(__dirname, './src/index.mjml');
 
-// const inject = (template, vars = {}) =>
-//   new Promise((resolve, reject) => {
-//     fs.readFile(
-//       template,
-//       { encoding: 'utf8' },
-//       (err, data) => {
-//         if (err) {
-//           return reject(err);
-//         }
-
-//         let finalTemplate = data;
-
-//         Object.keys(vars).forEach((key) => {
-//           const regex = new RegExp(`{{${key}}}`, 'g');
-//           finalTemplate = finalTemplate.replace(regex, vars[key]);
-//         });
-
-//         return resolve(finalTemplate);
-//       }
-//     );
-//   });
-
-// function compileTemplate(template) {
- 
-//   let output = mjml2html(template, { minify: true });
-//   fs.writeFile(`./build/${fileIn}.html`, output.html, (err) => {
-//       if (err) {
-//           throw err;
-//       }
-//   })
-//   const hrend = process.hrtime(hrstart);
-//   console.info('Execution time (hr): %ds %dms', hrend[0], hrend[1] / 1000000);
-
-// };
-
-// inject(mjml, {
-//   message: 'Goodbye Bob',
-// })
-// .then(finalTemplate => {
-//   // finalTemplate is an HTML string containing the template with all occurrences
-//   // of `{name}` replaced with "bob", and all occurrences of `{profileURL}`
-//   // replaced with "https://app.com/bob".
-//   compileTemplate(finalTemplate);
-// });
+// Read the Index.mjml file using the fs module, then compile the mjml to html and return the html as a promise.
 
 const compileTemplate = (templatePath) =>
   new Promise((resolve, reject) => {
@@ -68,36 +25,34 @@ const compileTemplate = (templatePath) =>
     );
   });
 
+// Inject the data into the HTML output from compileTemplate function using a regex replace for each key in the data object.
+
 function inject(template, vars = {}) {
- new Promise((resolve, reject) => {
-   let finalTemplate = "Hello";
+ return new Promise((resolve, reject) => {
+   let finalTemplate;
     Object.keys(vars).forEach((key) => {
       const regex = new RegExp(`{{${key}}}`, 'g');
       finalTemplate = template.replace(regex, vars[key]);
     });
     return resolve(finalTemplate);
   });
- const hrend = process.hrtime(hrstart);
- console.info('Execution time (hr): %ds %dms', hrend[0], hrend[1] / 1000000);
-
 };
 
-function build(finalTemplate) {
-  console.log(finalTemplate);
+// Write the HTML output from the inject function to the build folder and call process.hrtime to see how long the execution time was.
 
+function build(finalTemplate) {
     fs.writeFile(`./build/${fileIn}.html`, finalTemplate, (err) => {
       if (err) {
           throw(err);
       }
   });
+  const hrend = process.hrtime(hrstart);
+  console.info('Execution time: %ds %dms', hrend[0], hrend[1] / 1000000);
 }
 
 compileTemplate(mjml)
-.then((output) => {
-  // finalTemplate is an HTML string containing the template with all occurrences
-  // of `{name}` replaced with "bob", and all occurrences of `{profileURL}`
-  // replaced with "https://app.com/bob".
-  inject(output, {message: 'Hello Jane'});
-}).then((finalTemplate) => {
+.then(output => (
+  inject(output, {message: 'Hello Jane'})
+)).then(finalTemplate => {
    build(finalTemplate);
 });
