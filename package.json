@@ -1,8 +1,8 @@
 {
-  "name": "mjml-handlebars",
+  "name": "mjml-templating",
   "private": true,
   "version": "1.0.0",
-  "description": "A boilerplate for to combine templating with MJML and a live reloading browserSync development server.",
+  "description": "A boilerplate to combine templating with MJML and a live reloading browserSync development server.",
   "main": "index.js",
   "scripts": {
     "build": "node parse.js",
